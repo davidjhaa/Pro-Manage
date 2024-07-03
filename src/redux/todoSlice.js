@@ -39,11 +39,12 @@ const todoSlice = createSlice({
     },
     toggleChecklistItem(state, action) {
       const { todoIndex, checklistIndex } = action.payload;
-      if (todoIndex < state.todos.length && checklistIndex < state.todos[todoIndex].checklist.length) {
-        state.todos[todoIndex].checklist[checklistIndex].completed = 
-          !state.todos[todoIndex].checklist[checklistIndex].completed;
+      if (todoIndex < state.todos.length && checklistIndex < state.todos[todoIndex].subTask.length) {
+        state.todos[todoIndex].subTask[checklistIndex].completed = 
+          !state.todos[todoIndex].subTask[checklistIndex].completed;
       }
     },
+    
     moveTodoTask(state, action) {
       state.todos = state.todos.filter((_, index) => index !== action.payload.index);
     },

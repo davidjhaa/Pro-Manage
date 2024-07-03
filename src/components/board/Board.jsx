@@ -6,18 +6,31 @@ import Progress from "./progress/Progress";
 import Done from "./done/Done";
 import styles from "./Board.module.css";
 import { GoPeople } from "react-icons/go";
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 import axios from 'axios'
 import { setBacklog } from "../../redux/backlogSlice";
 import { setTodos } from "../../redux/todoSlice";
 import { setInProgress } from "../../redux/inprogressSlice";
 import { setDone } from "../../redux/doneSlice";
+import { useLocation, useNavigate } from "react-router-dom";
 const backendUrl = import.meta.env.VITE_Backend_URL;
 
 function Board() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const location = useLocation();
   const [name, setName] = useState("");
   const[openAddPeople, setOpenAddPeople] = useState(false)
+  const [selectedFilter, setSelectedFilter] = useState("");
+
+  const handleFilterChange = (event) => {
+    const filter = event.target.value;
+    setSelectedFilter(filter);
+    const queryParams = new URLSearchParams(location.search);
+    queryParams.set("filter", filter);
+    navigate({ search: queryParams.toString() });
+  };
+
 
   useEffect(() => {
     const fetchTasks = async () => {
@@ -75,7 +88,7 @@ function Board() {
           </div>
           {openAddPeople && <Addpeople setOpenAddPeople={setOpenAddPeople}/>}
         </div>
-        <select name="filter" className={styles.filter}>
+        <select name="filter" className={styles.filter} onChange={handleFilterChange}>
           <option value="today">Today</option>
           <option value="week">This Week</option>
           <option value="month">This Month</option>
@@ -84,16 +97,16 @@ function Board() {
       <div className={styles.body}>
         <div className={styles.boardContainer}>
           <div className={styles.column}>
-            <Backlog />
+            <Backlog filter={selectedFilter}/>
           </div>
           <div className={styles.column}>
-            <Todo />
+            <Todo filter={selectedFilter}/>
           </div>
           <div className={styles.column}>
-            <Progress />
+            <Progress filter={selectedFilter}/>
           </div>
           <div className={styles.column}>
-            <Done />
+            <Done filter={selectedFilter}/>
           </div>
         </div>  
       </div>

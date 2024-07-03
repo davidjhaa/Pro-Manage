@@ -6,22 +6,53 @@ import { VscCollapseAll } from "react-icons/vsc";
 import { BsThreeDots } from "react-icons/bs";
 import { FaChevronDown } from "react-icons/fa";
 import { RiArrowUpSLine } from "react-icons/ri";
-import { removeBacklog } from "../../../redux/backlogSlice";
+import { removeBacklog , toggleBacklogChecklistItem} from "../../../redux/backlogSlice";
 import { addTodo } from "../../../redux/todoSlice";
 import { addInProgress } from "../../../redux/inprogressSlice";
 import { addDone } from "../../../redux/doneSlice";
 import axios from "axios";
 const backendUrl = import.meta.env.VITE_Backend_URL;
 
-const Backlog = () => {
+const Backlog = ({filter}) => {
   const [visibleDropdownIndex, setVisibleDropdownIndex] = useState(null);
   const backlogs = useSelector((state) => state.backlog.backlogs);
+  const [filteredBacklogs, setFilteredBacklogs] = useState(backlogs);
   const [isHovered, setIsHovered] = useState(false);
   const dispatch = useDispatch();
 
   const [collapsedStates, setCollapsedStates] = useState(
     backlogs.map(() => true)
   );
+
+  const filterBacklogs = (backlogs, filter) => {
+    const now = new Date();
+    return backlogs.filter((task) => {
+      const taskCreationDate = new Date(task.createdAt);
+      switch (filter) {
+        case "today":
+          return taskCreationDate.toDateString() === now.toDateString();
+        case "week":
+          const startOfWeek = new Date(now.setDate(now.getDate() - now.getDay()));
+          const endOfWeek = new Date(now.setDate(now.getDate() - now.getDay() + 6));
+          return taskCreationDate >= startOfWeek && taskCreationDate <= endOfWeek;
+        case "month":
+          const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+          const endOfMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0);
+          return taskCreationDate >= startOfMonth && taskCreationDate <= endOfMonth;
+        default:
+          return true;
+      }
+    });
+  };
+  
+
+  useEffect(() => {
+    if (filter) {
+      setFilteredBacklogs(filterBacklogs(backlogs, filter));
+    } else {
+      setFilteredBacklogs(backlogs);
+    }
+  }, [backlogs, filter]);
 
   useEffect(() => {
     setCollapsedStates(backlogs.map(() => true));
@@ -61,6 +92,20 @@ const Backlog = () => {
     }
   };
 
+  const handleToggleChecklistItem = async (backlogIndex, checklistIndex) => {
+    dispatch(toggleBacklogChecklistItem({ backlogIndex, checklistIndex }));
+  
+    try {
+      const backlog = backlogs[backlogIndex];
+      const updatedChecklist = {
+        completed: !backlog.subTask[checklistIndex].completed,
+      };
+      await axios.put(`${backendUrl}/task/updateChecklist/${backlog._id}/checklist/${checklistIndex}`, updatedChecklist);
+    } catch (error) {
+      console.error('Failed to update checklist item on the backend:', error);
+    }
+  };
+
   return (
     <>
       <div className={styles.parent}>
@@ -70,7 +115,7 @@ const Backlog = () => {
             <VscCollapseAll className={styles.plus} onClick={collapseAll} />
           </span>
         </div>
-        {backlogs.map((todo, index) => (
+        {filteredBacklogs.map((todo, index) => (
           <div key={index} className={styles.task}>
             <div className={styles.priority}>
               <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
@@ -82,7 +127,12 @@ const Backlog = () => {
                     onMouseEnter={() => setIsHovered(true)}
                     onMouseLeave={() => setIsHovered(false)}
                   >
-                    {isHovered ? todo.assignedTo : todo.assignedTo?.slice(0, 2)}
+                    {isHovered ? todo.assignedTo?.slice(0, 2) : todo.assignedTo?.slice(0, 2)}
+                    {isHovered && (
+                      <div className={styles.tooltip}>
+                        {todo.assignedTo}
+                      </div>
+                    )}
                   </div>
                 )}
               </div>
@@ -131,14 +181,7 @@ const Backlog = () => {
                       type="checkbox"
                       className={styles.checkbox}
                       checked={item.completed}
-                      onChange={() =>
-                        dispatch(
-                          toggleChecklistItem({
-                            todoIndex: index,
-                            checklistIndex,
-                          })
-                        )
-                      }
+                      onChange={() => handleToggleChecklistItem(index, checklistIndex)}
                     />
                     <p className={styles.subtask}>{item.description}</p>
                   </div>

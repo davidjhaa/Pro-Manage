@@ -54,6 +54,7 @@ function Task({ onClose, todo, index, toggleDropdown }) {
           : []
       );
       setDueDate(todo.dueDate ? new Date(todo.dueDate) : null);
+      setSelectedPerson(todo.assignedTo)
     }
   }, [todo]);
 
@@ -156,10 +157,6 @@ function Task({ onClose, todo, index, toggleDropdown }) {
     onClose();
   };
 
-  const handlePeopleChange = (event) => {
-    setSelectedPerson(event.target.value);
-  };
-
   const clearErrors = () => {
     setErrors({ title: false, priority: false, checklist: false });
   };
@@ -188,6 +185,15 @@ function Task({ onClose, todo, index, toggleDropdown }) {
       setErrors((prevErrors) => ({ ...prevErrors, checklist: false }));
     }
   }, [title, priority, checklist]);
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleAssignClick = (e, option) => {
+    e.stopPropagation();
+    setSelectedPerson(option);
+    setIsOpen(false);
+    console.log('Assign button clicked for', option);
+  };
 
   return (
     <div className={styles.overlay}>
@@ -262,19 +268,32 @@ function Task({ onClose, todo, index, toggleDropdown }) {
             </div>
             <div className={styles.assign}>
               <p>Assign to</p>
-              <select
-                className={styles.assignbtn}
-                value={selectedPerson}
-                onChange={handlePeopleChange}
-                defaultValue="Add an assignee"
-              >
-                <option value="" disabled selected>Add an assignee</option>
-                {people.map((person, index) => (
-                  <option key={index} value={person} className={styles.option}>
-                    {person}
-                  </option>
-                ))}
-              </select>
+              <div className={styles.selectbtncontainer}>
+                <div
+                  className={styles.selectedbtn}
+                  onClick={() => setIsOpen(!isOpen)}
+                >
+                  {selectedPerson || "Add a assignee"}
+                </div>
+                {isOpen && (
+                  <div className={styles.selectOptionContainer}>
+                    {people.map((option, index) => (
+                      <div
+                        key={index}
+                        className={styles.selectoption}
+                      >
+                        <div style={{display:'flex', gap:'24px'}}>
+                          <div className={styles.shorthand}>{option.slice(0, 2)}</div>  
+                          {option}
+                        </div>
+                        <button onClick={(e) => handleAssignClick(e, option)} className={styles.assignbtn}>
+                          Assign
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
             <p className={styles.checklistDetail}>
               Checklist ({completedTasks}/{checklist.length})

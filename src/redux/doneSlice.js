@@ -26,6 +26,13 @@ const doneSlice = createSlice({
     moveDoneTask(state, action) {
       state.done = state.done.filter((_, index) => index !== action.payload.index);
     },
+    toggleDoneChecklistItem(state, action) {
+      const { doneIndex, checklistIndex } = action.payload;
+      if (doneIndex < state.done.length && checklistIndex < state.done[doneIndex].subTask.length) {
+        state.done[doneIndex].subTask[checklistIndex].completed = 
+          !state.done[doneIndex].subTask[checklistIndex].completed;
+      }
+    },
   },
 });
 
@@ -34,6 +41,7 @@ export const {
   addDone,
   removeDone,
   updateDone,
+  toggleDoneChecklistItem,
   moveDoneTask,
 } = doneSlice.actions;
 

@@ -23,6 +23,27 @@ const inProgressSlice = createSlice({
         state.inProgress[index] = task;
       }
     },
+    addProgressChecklistItem(state, action) {
+      const { inprogressIndex, checklistItem } = action.payload;
+      if (inprogressIndex < state.inProgress.length) {
+        state.inProgress[inprogressIndex].checklist.push(checklistItem);
+      }
+    },
+    removeProgressChecklistItem(state, action) {
+      const { inprogressIndex, checklistIndex } = action.payload;
+      if (inprogressIndex < state.inProgress.length) {
+        state.inProgress[inprogressIndex].checklist = state.inProgress[inprogressIndex].checklist.filter(
+          (_, index) => index !== checklistIndex
+        );
+      }
+    },
+    toggleProgressChecklistItem(state, action) {
+      const { inprogressIndex, checklistIndex } = action.payload;
+      if (inprogressIndex < state.inProgress.length && checklistIndex < state.inProgress[inprogressIndex].subTask.length) {
+        state.inProgress[inprogressIndex].subTask[checklistIndex].completed = 
+          !state.inProgress[inprogressIndex].subTask[checklistIndex].completed;
+      }
+    },
     
   },
 });
@@ -32,6 +53,9 @@ export const {
   addInProgress,
   removeInProgress,
   updateInProgress,
+  addProgressChecklistItem,
+  removeProgressChecklistItem,
+  toggleProgressChecklistItem,
   moveInProgressTask,
 } = inProgressSlice.actions;
 

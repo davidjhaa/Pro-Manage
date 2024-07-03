@@ -26,6 +26,27 @@ const backlogSlice = createSlice({
     moveBacklogTask(state, action) {
       state.backlogs = state.backlogs.filter((_, index) => index !== action.payload.index);
     },
+    addBacklogChecklistItem(state, action) {
+      const { backlogIndex, checklistItem } = action.payload;
+      if (backlogIndex < state.backlogs.length) {
+        state.backlogs[backlogIndex].checklist.push(checklistItem);
+      }
+    },
+    removeBacklogChecklistItem(state, action) {
+      const { backlogIndex, checklistIndex } = action.payload;
+      if (backlogIndex < state.backlogs.length) {
+        state.backlogs[backlogIndex].checklist = state.backlogs[backlogIndex].checklist.filter(
+          (_, index) => index !== checklistIndex
+        );
+      }
+    },
+    toggleBacklogChecklistItem(state, action) {
+      const { backlogIndex, checklistIndex } = action.payload;
+      if (backlogIndex < state.backlogs.length && checklistIndex < state.backlogs[backlogIndex].subTask.length) {
+        state.backlogs[backlogIndex].subTask[checklistIndex].completed = 
+          !state.backlogs[backlogIndex].subTask[checklistIndex].completed;
+      }
+    },
   },
 });
 
@@ -35,6 +56,9 @@ export const {
   removeBacklog,
   updateBacklog,
   moveBacklogTask,
+  addBacklogChecklistItem,
+  toggleBacklogChecklistItem,
+  removeBacklogChecklistItem
 } = backlogSlice.actions;
 
 export default backlogSlice.reducer;

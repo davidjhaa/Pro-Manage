@@ -6,19 +6,49 @@ import { VscCollapseAll } from "react-icons/vsc";
 import { BsThreeDots } from "react-icons/bs";
 import { FaChevronDown } from "react-icons/fa";
 import { RiArrowUpSLine } from "react-icons/ri";
-import { removeDone } from "../../../redux/doneSlice";
+import { removeDone, toggleDoneChecklistItem } from "../../../redux/doneSlice";
 import { addTodo } from "../../../redux/todoSlice";
 import { addBacklog } from "../../../redux/backlogSlice";
 import { addInProgress } from "../../../redux/inprogressSlice";
 import axios from "axios";
 const backendUrl = import.meta.env.VITE_Backend_URL;
 
-const Progress = () => {
+const Done = ({filter}) => {
   const [visibleDropdownIndex, setVisibleDropdownIndex] = useState(null);
   const done = useSelector((state) => state.done.done);
+  const [filteredDone, setFilteredDone] = useState(done);
+  const [isHovered, setIsHovered] = useState(false);
   const dispatch = useDispatch();
-
   const [collapsedStates, setCollapsedStates] = useState(done.map(() => true));
+
+  const filterBacklogs = (backlogs, filter) => {
+    const now = new Date();
+    return backlogs.filter((task) => {
+      const taskCreationDate = new Date(task.createdAt);
+      switch (filter) {
+        case "today":
+          return taskCreationDate.toDateString() === now.toDateString();
+        case "week":
+          const startOfWeek = new Date(now.setDate(now.getDate() - now.getDay()));
+          const endOfWeek = new Date(now.setDate(now.getDate() - now.getDay() + 6));
+          return taskCreationDate >= startOfWeek && taskCreationDate <= endOfWeek;
+        case "month":
+          const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+          const endOfMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0);
+          return taskCreationDate >= startOfMonth && taskCreationDate <= endOfMonth;
+        default:
+          return true;
+      }
+    });
+  };
+
+  useEffect(() => {
+    if (filter) {
+      setFilteredDone(filterBacklogs(done, filter));
+    } else {
+      setFilteredDone(done);
+    }
+  }, [done, filter]);
 
   useEffect(() => {
     setCollapsedStates(done.map(() => true));
@@ -58,6 +88,21 @@ const Progress = () => {
     }
   };
 
+
+  const handleToggleChecklistItem = async (doneIndex, checklistIndex) => {
+    dispatch(toggleDoneChecklistItem({ doneIndex, checklistIndex }));
+  
+    try {
+      const doneTask = done[doneIndex];
+      const updatedChecklist = {
+        completed: !doneTask.subTask[doneIndex].completed,
+      };
+      await axios.put(`${backendUrl}/task/updateChecklist/${doneTask._id}/checklist/${checklistIndex}`, updatedChecklist);
+    } catch (error) {
+      console.error('Failed to update checklist item on the backend:', error);
+    }
+  };
+
   return (
     <>
       <div className={styles.parent}>
@@ -67,7 +112,7 @@ const Progress = () => {
             <VscCollapseAll className={styles.plus} onClick={collapseAll} />
           </span>
         </div>
-        {done.map((todo, index) => (
+        {filteredDone.map((todo, index) => (
           <div key={index} className={styles.task}>
             <div className={styles.priority}>
               <div
@@ -75,6 +120,20 @@ const Progress = () => {
               >
                 <div className={styles[todo.priority]}></div>
                 <span className={styles.pr}>{todo.priority} PRIORITY</span>
+                {todo?.assignedTo && (
+                  <div
+                    className={styles.assignedTo}
+                    onMouseEnter={() => setIsHovered(true)}
+                    onMouseLeave={() => setIsHovered(false)}
+                  >
+                    {isHovered ? todo.assignedTo?.slice(0, 2) : todo.assignedTo?.slice(0, 2)}
+                    {isHovered && (
+                      <div className={styles.tooltip}>
+                        {todo.assignedTo}
+                      </div>
+                    )}
+                  </div>
+                )}
               </div>
               <BsThreeDots
                 style={{ cursor: "pointer" }}
@@ -121,14 +180,7 @@ const Progress = () => {
                       type="checkbox"
                       className={styles.checkbox}
                       checked={item.completed}
-                      onChange={() =>
-                        dispatch(
-                          toggleChecklistItem({
-                            todoIndex: index,
-                            checklistIndex,
-                          })
-                        )
-                      }
+                      onChange={() => handleToggleChecklistItem(index, checklistIndex)}
                     />
                     <p className={styles.subtask}>{item.description}</p>
                   </div>
@@ -176,4 +228,4 @@ const Progress = () => {
   );
 };
 
-export default Progress;
+export default Done;

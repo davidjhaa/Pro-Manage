@@ -205,3 +205,34 @@
     font-weight: 600;
     color: white;
 }
+
+
+.assignedTo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: rgb(241, 212, 217);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+}
+
+.tooltip {
+  position: absolute;
+  top: -30px; 
+  left: 50%;
+  font-size: 1rem;
+  text-transform: none;
+  transform: translateX(-50%);
+  padding: 5px 10px;
+  color: black;
+  border-radius: 3px;
+  white-space: nowrap;
+  z-index: 1000;
+  pointer-events: none;
+}
+
