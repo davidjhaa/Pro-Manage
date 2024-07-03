@@ -1,0 +1,83 @@
+.sidebar {
+  height: 100vh;
+    /* min-width: 14vw; */
+    border-right: 1px solid rgb(237, 245, 254);
+    padding: 2rem 0px 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.nav{
+  font-family: Poppins;
+}
+
+.logo {
+  display: flex;
+    align-items: center;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.name {
+  font-weight: 700;
+  font-size: 1.2rem;
+  font-family: poppins;
+}
+
+.links {
+  display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+}
+
+.link {
+  display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-weight: 600;
+    color: rgb(153, 150, 150);
+    padding: 0.5rem 2.8rem;
+    gap: 1rem;
+    text-decoration: none;
+    cursor: pointer;
+    font-family: Poppins;
+}
+
+.link span{
+  font-family: poppins;
+}
+
+.active {
+  background-color: rgb(236, 244, 253);
+    color: black;
+}
+
+.icon{
+  width:24px;
+  height: 24px;
+}
+
+.logout {
+  display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+    gap: 1rem;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.logoutbtn{
+  width: 21px;
+  height: 21px;
+  color: #cf3636;
+}
+
+.logout span {
+  color: #cf3636;
+  font-size: 1rem;
+  font-weight: 600;
+}

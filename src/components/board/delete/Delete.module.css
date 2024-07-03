@@ -1,0 +1,65 @@
+.parent{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(141, 148, 152, 0.7);
+    z-index: 1004;
+}
+
+.main{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(255, 255, 255);
+    border-radius: 15px;
+    padding: 1rem 2rem;
+}
+
+.content{
+    min-width: 300px;
+}
+
+.container p{
+    font-size: 0.9rem;
+    text-align: center;
+    font-weight: 600;
+    font-family: Poppins;
+}
+
+.confirm{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1.2rem;
+}
+
+.yes{
+    color: white;
+    background-color: rgb(23, 162, 184);
+    display: block;
+    padding: 0.9rem 0px;
+    border-radius: 15px;
+    border: transparent;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+}
+
+.no{
+    border: 1.3px solid #cf3636;
+    color: #cf3636;
+    display: block;
+    padding: 0.9rem 0px;
+    border-radius: 15px;
+    background-color: inherit;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+}
+

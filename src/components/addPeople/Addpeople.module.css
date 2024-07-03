@@ -1,0 +1,108 @@
+.parent{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(141, 148, 152, 0.7);
+    z-index: 1004;
+}
+
+.main{
+    min-width: 450px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(255, 255, 255);
+    border-radius: 15px;
+    padding: 2.2rem 2rem;
+}
+
+.content{
+    min-width: 300px;
+}
+
+.content p{
+    font-size: 0.9rem;
+    font-weight: 600;
+    font-family: Poppins;
+    padding-left: 8px;
+}
+
+.confirm{
+    width: 100%;
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.6rem;
+}
+
+.yes{
+    width: 100%;
+    color: white;
+    background-color: rgb(23, 162, 184);
+    display: block;
+    padding: 8px 0px;
+    border-radius: 7px;
+    border: transparent;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+}
+
+.no{
+    width: 100%;
+    border: 1.3px solid #cf3636;
+    color: #cf3636;
+    display: block;
+    padding: 8px 0px;
+    border-radius: 7px;
+    background-color: inherit;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+}
+
+.assign {
+    width: 100%;
+    border: 1px solid rgb(226, 226, 226);
+    height: 34px;
+    background-color: white;
+    color: rgb(155, 149, 159);
+    font-size: 1rem;
+    border-radius: 7px;
+    padding: 11px;
+    outline: none;
+    margin: 15px 0px;
+  }
+
+  .added{
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .added p{
+    font-family: poppins;
+    font-weight: 500;
+  }
+
+  .okay{
+    text-align: center;
+    width: 60%;
+    color: white;
+    background-color: rgb(23, 162, 184);
+    display: block;
+    padding: 8px 0px;
+    border-radius: 7px;
+    border: transparent;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+}

@@ -1,0 +1,248 @@
+.parent {
+  max-height: 100%;
+  overflow-y: scroll;
+  padding: 0px 0px;
+}
+
+.parent::-webkit-scrollbar {
+  width: 12px;
+}
+
+.parent::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.parent::-webkit-scrollbar-thumb {
+  background: #9cb7c5;
+  border-radius: 6px;
+}
+
+.heading {
+  display: flex;
+  background-color: inherit;
+  top: 0px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dropdown {
+  position: absolute;
+  background-color: transparent;
+  padding: 8px;
+  z-index: 10;
+  right: 0px;
+  top: 10px;
+}
+
+.plus {
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.plus::hover {
+  color: black;
+}
+
+.pr {
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  color: rgb(133, 133, 133);
+  font-family: Poppins;
+}
+
+.heading h3 {
+  font-weight: 500;
+  font-family: Poppins;
+}
+
+.icons {
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #979292;
+}
+
+.task {
+  background-color: white;
+  margin: 1rem 0px;
+  padding: 1rem;
+  height: auto;
+  width: 100%;
+  border-radius: 20px;
+}
+
+.high {
+  background-color: red;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.low {
+  background-color: #008000;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.moderate {
+  background-color: #0000ff;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.priority {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-size: 1.2rem;
+  cursor: pointer;
+  font-weight: 500;
+  margin-bottom: 1.8rem;
+  margin-top: 12px;
+  width: 60%;
+}
+
+.checklistToggle {
+  display: flex;
+  font-family: Inter;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.toggleCollapse {
+  font-size: 1.125rem;
+  color: gray;
+  border: none;
+}
+
+.checklists {
+  margin: 0;
+  padding: 0;
+  font-family: Poppins;
+}
+
+.checklist {
+  display: flex;
+  align-items: center;
+  border: 1px solid rgb(226, 226, 226);
+  border-radius: 15px;
+  margin: 1rem 1rem 1rem 10px;
+  padding: 0.7rem 0.8rem;
+  gap: 1rem;
+}
+
+.checkbox {
+  min-width: 15px;
+  min-height: 15px;
+  accent-color: rgb(23, 162, 184);
+}
+
+.subtask {
+  color: rgb(0, 0, 0);
+  font-weight: 500;
+  overflow-x: scroll;
+  padding: 0px;
+}
+
+.subtask::-webkit-scrollbar {
+  height: 0.4rem;
+  margin-top: 0.4rem;
+}
+
+.subtask::-webkit-scrollbar-thumb {
+  border-radius: 100px;
+  background-color: rgb(226, 226, 226);
+}
+
+.status {
+  font-family: Inter;
+  margin-top: 2.4rem;
+  display: flex;
+  align-items: center;
+}
+
+.spaceBetween {
+  justify-content: space-between;
+}
+
+.flexEnd {
+  justify-content: flex-end;
+}
+
+
+.date{
+  font-family: poppins;
+    padding: 0.3rem 0.8rem;
+    border-radius: 10px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: white;
+}
+
+.datePassed {
+  background-color: red;
+}
+
+.dateUpcoming {
+  color: black;
+  background-color: #d3d2d2;
+}
+
+.statusButtons {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.change {
+  font-size: 0.6rem;
+  padding: 0.4rem 0.6rem;
+  color: rgb(118, 117, 117);
+  background-color: rgb(219, 219, 219);
+  font-weight: 600;
+  border-radius: 6px;
+  border: transparent;
+  cursor: pointer;
+}
+
+
+.assignedTo {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: beige;
+  text-transform: uppercase;
+  font-size: 10px;
+  text-align: center;
+}
+
+
+
+.assignedTo::after {
+  text-transform: none;
+  content: attr(data-fullname);
+  position: absolute;
+  left: 0;
+  top: -10px;
+  white-space: nowrap;
+  background-color: transparent;
+  color: #1b1a1a;
+  /* padding: 5px; */
+  /* border-radius: 3px; */
+  display: block;
+  z-index: 10;
+}
+

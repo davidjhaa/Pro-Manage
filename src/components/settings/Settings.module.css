@@ -1,0 +1,59 @@
+.heading{
+    font-size: 2.1rem;
+    font-weight: 500;
+    margin-bottom: 4rem;
+    font-family: Poppins;
+}
+
+.name{
+    margin-bottom: 1.5rem;
+}
+
+.inputbox{
+    padding: 0.1rem 0.4rem;
+    display: flex;
+    border-radius: 5px;
+    border: 1px solid rgb(218, 208, 208);
+    align-items: center;
+    width: 400px;
+    justify-content: space-between;
+}
+
+.label{
+    font-size: 1.6rem;
+    color: rgb(166, 157, 157);
+    margin-right: 0.3rem;
+}
+
+.nameInput{
+    padding: 0.5em;
+    border: none;
+    font-size: 1rem;
+    color: rgb(166, 157, 157);
+    width: 100%;
+    outline: none;
+}
+
+.btn{
+    display: block;
+    width: 35%;
+    padding: 0.8rem;
+    border-radius: 100px;
+    cursor: pointer;
+    background-color: rgb(23, 162, 184);
+    color: white;
+    border: transparent;
+    transition: all 0.3s ease 0s;
+    font-weight: 300;
+    letter-spacing: 1px;
+    margin-top: 3rem;
+}
+
+.toggleButton {
+    font-size: 1.2rem;
+    color: rgb(166, 157, 157);
+    cursor: pointer;
+    border: none;
+    background-color: white;
+    outline: none;
+  }

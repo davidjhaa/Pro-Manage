@@ -1,0 +1,260 @@
+.overlay {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(141, 148, 152, 0.7);
+  z-index: 1000;
+  transition: all 0.3s ease 0s;
+}
+
+.overlayContent {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgb(255, 255, 255);
+  border-radius: 15px;
+  padding: 1rem 2rem;
+}
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 650px;
+  height: 500px;
+}
+
+.taskForm {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.titleBox {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  row-gap: 0.3rem;
+}
+
+.titleLabel {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.titleInput {
+  border: 1px solid rgb(226, 226, 226);
+  height: 40px;
+  color: rgb(155, 149, 159);
+  font-size: 1.2rem;
+  border-radius: 7px;
+  padding: 1.2rem;
+}
+
+.priorityButtons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.priorityButtonContainer {
+  display: flex;
+  gap: 1.3rem;
+}
+
+.priorityButton {
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  padding: 0.4rem 1rem;
+  color: rgb(118, 117, 117);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border: 1px solid rgb(226, 226, 226);
+  border-radius: 5px;
+  gap: 0.5rem;
+  background-color: inherit;
+}
+
+.priorityButton.selected {
+  background: rgb(226, 226, 226);
+}
+
+.priorityDot {
+  display: inline-block;
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+}
+
+.priorityDot.high {
+  background: red;
+}
+
+.priorityDot.moderate {
+  background: blue;
+}
+
+.priorityDot.low {
+  background: green;
+}
+
+.assign {
+  display: flex;
+  gap: 14px;
+  justify-content: space-between;
+  margin-top: 14px;
+  align-items: center;
+}
+
+.assignbtn {
+  width: 86%;
+  border: 1px solid rgb(226, 226, 226);
+  height: 30px;
+  background-color: white;
+  color: rgb(155, 149, 159);
+  font-size: 1rem;
+  border-radius: 7px;
+  padding: 1.2rem;
+  outline: none;
+}
+
+.checklistDetail {
+  margin: 1.4rem 0px 0.4rem;
+  font-size: 0.9rem;
+}
+
+.checklistContainer {
+  max-height: 11rem;
+  overflow-y: scroll;
+  padding: 0px 0.2rem;
+}
+
+.checklistContainer::-webkit-scrollbar {
+  width: 12px;
+}
+
+.checklistContainer::-webkit-scrollbar-track {
+  background: white;
+}
+
+.checklistContainer::-webkit-scrollbar-thumb {
+  background: #9cb7c5;
+  border-radius: 6px;
+}
+
+.checklistItem {
+  display: flex;
+  align-items: center;
+  border: 1px solid rgb(226, 226, 226);
+  border-radius: 15px;
+  margin: 1rem 1rem 1rem 0px;
+  padding: 0.7rem 0.8rem;
+  gap: 1rem;
+}
+
+.checklistAddNew {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 10px;
+}
+
+.taskInput {
+  width: 100%;
+  height: 20px;
+  border: none;
+  outline: none;
+  font-size: 1.2rem;
+}
+
+.checkBox {
+  min-width: 15px;
+  min-height: 15px;
+  accent-color: #17a2b8;
+}
+
+.error {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: rgb(207, 54, 54);
+  margin-top: 0.8rem;
+  font-family: Poppins;
+}
+
+.addNewButton {
+  font-size: 1rem;
+  background-color: transparent;
+  letter-spacing: 1.7px;
+  color: rgb(155, 149, 159);
+  margin-top: 1.2rem;
+  cursor: pointer;
+  border: transparent;
+}
+
+.deleteButton {
+  color: red;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+
+.formActions {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.dateButton {
+  font-family: Poppins;
+}
+
+.datebtn {
+  border: 1.3px solid rgb(226, 226, 226);
+  color: rgb(118, 117, 117);
+  font-size: 1.2rem;
+  padding: 0.5rem 2.5rem;
+  border-radius: 10px;
+  border: none;
+  background-color: transparent;
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+}
+
+.datePickerContainer {
+  position: absolute;
+  left: 34px;
+  bottom: 50px;
+  z-index: 1;
+  background-color: white;
+}
+
+.cansavebtn {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.cancelButton {
+  border: 1.3px solid red;
+  background-color: white;
+  color: red;
+  font-size: 1.2rem;
+  padding: 0.5rem 2.5rem;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.saveButton {
+  font-size: 1.2rem;
+  padding: 0.5rem 2.5rem;
+  border-radius: 10px;
+  border: none;
+  background-color: transparent;
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  border: 1.3px solid var(--primary-500);
+  color: white;
+  background-color: #17a2b8;
+}

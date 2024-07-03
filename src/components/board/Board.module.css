@@ -1,0 +1,112 @@
+.board {
+  width: calc(-210px + 100vw);
+  height: 100%;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  font-family: Poppins;
+}
+
+.left{
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.addpeople{
+  display: flex;
+  color: gray;
+  gap: 6px;
+  font-family: poppins;
+  cursor: pointer;
+}
+
+.greet {
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  text-transform: capitalize;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-family: Poppins;
+}
+
+.header span {
+  color: rgb(128, 128, 128);
+}
+
+.titleContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+}
+
+.title {
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+
+.filter {
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.body {
+  height: calc(-8.7rem + 100vh);
+}
+
+.boardContainer {
+  height: 100%;
+  display: flex;
+  overflow-x: scroll;
+  padding: 0px 2rem;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.column {
+  width: 380px;
+  height: 97%;
+  border-radius: 15px;
+  background-color: #eef2f5;
+  padding: 1rem;
+  flex-shrink: 0;
+}
+
+.boardContainer::-webkit-scrollbar {
+  width: 62px;
+  height: 12px;
+}
+
+.boardContainer::-webkit-scrollbar-track {
+  background: white;
+}
+
+.boardContainer::-webkit-scrollbar-thumb {
+  background: #9cb7c5;
+  border-radius: 6px;
+}
+
+.logout {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+  gap: 1rem;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.logout span {
+  color: red;
+  font-size: 1rem;
+  font-weight: 600;
+}

@@ -1,0 +1,203 @@
+.container {
+  display: flex;
+}
+
+.cover {
+  z-index: -2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 60dvw;
+  height: 100vh;
+  max-height: 100vh;
+  background-color: rgb(23, 162, 184);
+}
+
+.banner {
+  position: relative;
+  margin-top: -100px;
+  width: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Open Sans;
+}
+
+.round {
+  position: absolute;
+  z-index: -1;
+  width: 16vw;
+  top: 50%;
+  right: 50%;
+  transform: translate(51.1%, -64%);
+  height: 16vw;
+  border-radius: 50%;
+  background-color: #268d9d;
+}
+
+.photo {
+  width: 80%;
+  object-fit: cover;
+  display: block;
+}
+
+.welcome {
+  display: flex;
+  margin-top: -4rem;
+  flex-direction: column;
+  align-items: center;
+  font-family: Open Sans;
+}
+
+.welcome p {
+  color: rgb(255, 255, 255);
+  font-size: 1.8rem;
+  letter-spacing: 1.5px;
+  text-align: center;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.welcome span {
+  text-align: center;
+  color: rgb(255, 255, 255);
+}
+
+.registerForm{
+  flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.formContainer{
+  width: 60%;
+    margin: 0px auto;
+    min-height: 35rem;
+}
+
+.heading{
+  text-align: center;
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 4rem;
+}
+
+.form {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.inputBox{
+  margin-bottom: 1.5rem;
+}
+
+.inputWithIcon {
+  padding: 0.1rem 0.4rem;
+    display: flex;
+    border-radius: 5px;
+    border: 1px solid rgb(218, 208, 208);
+    align-items: center;
+    justify-content: space-between;
+}
+
+.icon {
+  display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    color: rgb(166, 157, 157);
+    margin-right: 0.3rem;
+}
+
+.input {
+  padding: 0.5em;
+    border: none;
+    font-size: 1rem;
+    color: rgb(166, 157, 157);
+    width: 100%;
+    outline: none;
+}
+
+.passwordInput{
+  padding: 0.5em;
+  border: none;
+  font-size: 1rem;
+  color: rgb(166, 157, 157);
+  width: 100%;
+  outline: none;
+}
+
+.passwordContainer {
+  padding: 0.1rem 0.4rem;
+  display: flex;
+  border-radius: 5px;
+  border: 1px solid rgb(218, 208, 208);
+  align-items: center;
+  justify-content: space-between;
+
+}
+
+.passwordContainer {
+  position: relative;
+  margin-bottom: 10px;
+} 
+  
+  .toggleButton {
+    font-size: 1.2rem;
+    color: rgb(166, 157, 157);
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+    outline: none;
+  }
+    
+  .submitButton {
+    display: block;
+    width: 100%;
+    padding: 0.8rem;
+    border-radius: 100px;
+    cursor: pointer;
+    background-color: rgb(23, 162, 184);
+    color: white;
+    border: transparent;
+    transition: all 0.3s ease 0s;
+    font-weight: 300;
+    letter-spacing: 1px;
+    margin-top: 3rem;
+  }
+
+  .formContainer p{
+    margin: 2rem 0px;
+    text-align: center;
+    color: gray;
+    font-size: 1rem;
+  }
+  
+  .submitButton:hover {
+    background-color: #117a8b;
+  }
+
+  .loginButton{
+    background-color: white;
+    color: rgb(23, 162, 184);
+    border: 1px solid rgb(23, 162, 184);
+    text-align: center;
+    text-decoration: none;
+    margin-top: 0px;
+    display: block;
+    width: 100%;
+    padding: 0.8rem;
+    border-radius: 100px;
+    cursor: pointer;
+    font-weight: 300;
+    letter-spacing: 1px;
+  }
+  
+  .error {
+    color: red;
+    font-size: 0.85rem;
+    margin-top: -5px;
+  }

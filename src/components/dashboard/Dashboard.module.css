@@ -1,0 +1,21 @@
+.appContainer {
+  font-family: Poppins;
+    display: flex;
+    width: 100vw;
+    max-height: 100vh;
+    height: 100vh;
+}
+
+.mainContentBoard {
+  width: 100vw;
+}
+
+.mainContentAnalytics {
+  width: 100vw;
+}
+
+.settings{
+  width: 60%;
+    margin: 2rem;
+    min-height: 35rem;
+}

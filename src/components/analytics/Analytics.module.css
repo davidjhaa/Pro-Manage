@@ -1,0 +1,54 @@
+.head{
+    width: 100vw;
+}
+
+.heading{
+    font-size: 2.1rem;
+    font-weight: 500;
+    margin: 2rem auto;
+    font-family: Poppins;
+}
+
+.main{
+    display: flex;
+    margin: 0px auto;
+    width: 96%;
+    display: flex;
+    gap: 4rem;
+}
+
+.listhead{
+    background-color: rgb(249, 252, 255);
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+    gap: 1.5rem;
+    width: 28rem;
+    padding: 2rem;
+}
+
+.list{
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.3rem;
+}
+
+.indentaionText{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.indentation{
+    display: inline-block;
+    min-width: 12px;
+    min-height: 12px;
+    border-radius: 50%;
+    background-color: rgb(144, 196, 204);
+}
+
+.text{
+    font-weight: 500;
+}
