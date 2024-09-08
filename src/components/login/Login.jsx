@@ -10,7 +10,7 @@ import { FiEyeOff } from "react-icons/fi";
 import { MdOutlineMailOutline } from "react-icons/md";
 import { CiLock } from "react-icons/ci";
 
-function SignUp() {
+function Login() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
@@ -23,6 +23,7 @@ function SignUp() {
   });
 
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
@@ -49,15 +50,20 @@ function SignUp() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (validateForm()) {
+      setLoading(true);
       const result = await loginAdmin(formData).catch((error) => {
-        notify(error.message);
+        toast.error(error.message);
+        setLoading(false);
       });
-      if (result.status === 200) {
-        console.log(result);
-        toast.success("logged in successfully");
+      if (result?.status === 200) {
+        toast.success("Logged in successfully");
         setTimeout(() => {
+          setLoading(false);
           navigate("/board");
         }, 1500);
+      }
+      else{
+        setLoading(false);
       }
     } 
     else {
@@ -128,8 +134,13 @@ function SignUp() {
               type="submit"
               className={styles.loginButton}
               onClick={(e) => handleSubmit(e)}
+              disabled={loading} 
             >
-              Log in
+              {loading ? (
+                <div className={styles.loader}></div>
+              ) : (
+                "Log in"
+              )}
             </button>
           </form>
           <p className={styles.ask}>Have no account yet?</p>
@@ -147,4 +158,4 @@ function SignUp() {
   );
 }
 
-export default SignUp;
+export default Login;

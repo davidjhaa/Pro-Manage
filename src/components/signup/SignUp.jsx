@@ -29,6 +29,7 @@ function SignUp() {
 
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
@@ -68,14 +69,17 @@ function SignUp() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (validateForm()) {
+      setLoading(true);
       const result = await registerAdmin(formData).catch((error) => {
-        notify(error.message);
+        toast.error(error.message);
+        setLoading(false);
       });
       console.log("Form submitted successfully:", formData);
       if (result.status === 200) {
         console.log(result);
         toast.success("signed up successfull");
         setTimeout(() => {
+          setLoading(false);
           navigate("/login");
         }, 1500);
       }

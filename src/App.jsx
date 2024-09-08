@@ -10,13 +10,13 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<SignUp />} />
+        <Route path="/" element={<Dashboard />} />
         <Route path="/signUp" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
         <Route path="/share/:id" element={<Share />} />
-        <Route path="/board" element={<ProtectedRoute Component= {Dashboard} />} />
-        <Route path="/analytics" element={<ProtectedRoute Component= {Dashboard} />} /> 
-        <Route path="/settings" element={<ProtectedRoute Component= {Dashboard} />} /> 
+        <Route path="/board" element={<Dashboard />} />
+        <Route path="/analytics" element={<Dashboard />} /> 
+        <Route path="/settings" element={<Dashboard />} /> 
       </Routes>
     </BrowserRouter>
   )

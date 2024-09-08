@@ -84,6 +84,11 @@ function Task({ onClose, todo, index, toggleDropdown }) {
   };
 
   const handleSubmit = async () => {
+    const userId = localStorage.getItem("userId");
+    if (userId === null)  {
+      toast.error("Please sign in to create a task");
+      return;
+    }
     if (title.trim() === "") {
       setErrors((prevErrors) => ({ ...prevErrors, title: true }));
       toast.error("Title is required");
