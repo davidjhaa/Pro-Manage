@@ -63,6 +63,15 @@
   color: #979292;
 }
 
+/* .task {
+  background-color: white;
+  margin: 1rem 0px;
+  padding: 1rem;
+  height: auto;
+  width: 100%;
+  border-radius: 20px;
+} */
+
 .task {
   background-color: white;
   margin: 1rem 0px;
@@ -70,6 +79,12 @@
   height: auto;
   width: 100%;
   border-radius: 20px;
+  transition: opacity 0.5s ease-in-out; /* Add this */
+  opacity: 1; /* Default opacity */
+}
+
+.task.fade-out {
+  opacity: 0; /* Task will fade out */
 }
 
 .high {

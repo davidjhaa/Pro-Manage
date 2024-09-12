@@ -2,7 +2,6 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import SignUp from "./components/signup/SignUp";
 import Login from './components/login/Login';
 import Dashboard from './components/dashboard/Dashboard';
-import ProtectedRoute from "./components/ProtectedRoute";
 import Share from "./components/share/Share";
 
 

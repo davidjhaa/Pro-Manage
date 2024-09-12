@@ -89,22 +89,45 @@ const Todo = ({filter}) => {
     }
   };
   
-
+  // const handleMoveTask = async (task, index, toState) => {
+  //   dispatch(removeTodo(index));
+  //   await axios.put(`${backendUrl}/task/updateStatus`, {
+  //     id: task._id,
+  //     status: toState,
+  //   });
+  //   if (toState === "backlog") {
+  //     dispatch(addBacklog(task));
+  //   }
+  //   if (toState === "inProgress") {
+  //     dispatch(addInProgress(task));
+  //   } else if (toState === "done") {
+  //     dispatch(addDone(task));
+  //   }
+  // };
   const handleMoveTask = async (task, index, toState) => {
-    dispatch(removeTodo(index));
-    await axios.put(`${backendUrl}/task/updateStatus`, {
-      id: task._id,
-      status: toState,
-    });
-    if (toState === "backlog") {
-      dispatch(addBacklog(task));
+    const taskElement = document.getElementById(`task-${index}`);
+    if (taskElement) {
+      taskElement.classList.add(styles.fadeOut); // Trigger fade-out animation
     }
-    if (toState === "inProgress") {
-      dispatch(addInProgress(task));
-    } else if (toState === "done") {
-      dispatch(addDone(task));
-    }
+  
+    setTimeout(async () => {
+      dispatch(removeTodo(index));
+      await axios.put(`${backendUrl}/task/updateStatus`, {
+        id: task._id,
+        status: toState,
+      });
+  
+      if (toState === "backlog") {
+        dispatch(addBacklog(task));
+      }
+      if (toState === "inProgress") {
+        dispatch(addInProgress(task));
+      } else if (toState === "done") {
+        dispatch(addDone(task));
+      }
+    }, 500); // Wait for the animation to complete (500ms matches the CSS transition duration)
   };
+  
 
   return (
     <>
@@ -120,7 +143,7 @@ const Todo = ({filter}) => {
           </span>
         </div>
         {filteredTodo.map((todo, index) => (
-          <div key={index} className={styles.task}>
+          <div key={index} id={`task-${index}`} className={styles.task}>
             <div className={styles.priority}>
               <div
                 style={{ display: "flex", alignItems: "center", gap: "8px" }}
