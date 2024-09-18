@@ -71,6 +71,25 @@ function Login() {
     }
   };
 
+  
+  const guestLogin = async (e) => {
+      setLoading(true);
+      const result = await loginAdmin({email:'vishaljhaa4u@gmail.com', password:'0000'}).catch((error) => {
+        toast.error(error.message);
+        setLoading(false);
+      });
+      if (result?.status === 200) {
+        toast.success("Logged in successfully");
+        setTimeout(() => {
+          setLoading(false);
+          navigate("/board");
+        }, 1500);
+      }
+      else{
+        setLoading(false);
+      }
+  };
+
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
@@ -140,6 +159,18 @@ function Login() {
                 <div className={styles.loader}></div>
               ) : (
                 "Log in"
+              )}
+            </button>
+            <button
+              type="submit"
+              className={styles.loginButton}
+              onClick={(e) => guestLogin(e)}
+              disabled={loading} 
+            >
+              {loading ? (
+                <div className={styles.loader}></div>
+              ) : (
+                "Guest Login"
               )}
             </button>
           </form>
