@@ -1,4 +1,4 @@
-import { Routes, Route, BrowserRouter } from "react-router-dom";
+import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
 import SignUp from "./components/signup/SignUp";
 import Login from './components/login/Login';
 import Dashboard from './components/dashboard/Dashboard';
@@ -16,6 +16,9 @@ function App() {
         <Route path="/board" element={<Dashboard />} />
         <Route path="/analytics" element={<Dashboard />} /> 
         <Route path="/settings" element={<Dashboard />} /> 
+
+        {/* Wildcard route for undefined paths */}
+        <Route path="*" element={<Navigate to="/board" />} />
       </Routes>
     </BrowserRouter>
   )
