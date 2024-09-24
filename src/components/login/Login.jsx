@@ -24,6 +24,7 @@ function Login() {
 
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [loading2, setLoading2] = useState(false);
 
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
@@ -73,20 +74,20 @@ function Login() {
 
   
   const guestLogin = async (e) => {
-      setLoading(true);
+      setLoading2(true);
       const result = await loginAdmin({email:'vishaljhaa4u@gmail.com', password:'0000'}).catch((error) => {
         toast.error(error.message);
-        setLoading(false);
+        setLoading2(false);
       });
       if (result?.status === 200) {
         toast.success("Logged in successfully");
         setTimeout(() => {
-          setLoading(false);
+          setLoading2(false);
           navigate("/board");
         }, 1500);
       }
       else{
-        setLoading(false);
+        setLoading2(false);
       }
   };
 
@@ -167,7 +168,7 @@ function Login() {
               onClick={(e) => guestLogin(e)}
               disabled={loading} 
             >
-              {loading ? (
+              {loading2 ? (
                 <div className={styles.loader}></div>
               ) : (
                 "Guest Login"
