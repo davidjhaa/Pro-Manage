@@ -73,23 +73,51 @@ function Login() {
   };
 
   
+  // const guestLogin = async (e) => {
+  //     setLoading2(true);
+  //     const result = await loginAdmin({email:'vishaljhaa4u@gmail.com', password:'0000'}).catch((error) => {
+  //       toast.error(error.message);
+  //       setLoading2(false);
+  //     });
+  //     if (result?.status === 200) {
+  //       toast.success("Logged in successfully");
+  //       setTimeout(() => {
+  //         setLoading2(false);
+  //         navigate("/board");
+  //       }, 1500);
+  //     }
+  //     else{
+  //       setLoading2(false);
+  //     }
+  // };
+
+
   const guestLogin = async (e) => {
-      setLoading2(true);
-      const result = await loginAdmin({email:'vishaljhaa4u@gmail.com', password:'0000'}).catch((error) => {
-        toast.error(error.message);
-        setLoading2(false);
+    e.preventDefault(); 
+    setLoading2(true);
+    try {
+      const result = await loginAdmin({
+        email: 'vishaljhaa4u@gmail.com',
+        password: '0000'
       });
+      
       if (result?.status === 200) {
         toast.success("Logged in successfully");
         setTimeout(() => {
           setLoading2(false);
           navigate("/board");
         }, 1500);
-      }
-      else{
+      } else {
+        toast.error("Login failed. Please check the credentials.");
         setLoading2(false);
       }
+    } catch (error) {
+      console.error("Guest login failed:", error); // Log the error for debugging
+      toast.error(error.message || "An error occurred during login.");
+      setLoading2(false);
+    }
   };
+  
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
