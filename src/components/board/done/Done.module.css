@@ -213,8 +213,9 @@
   align-items: center;
   position: relative;
   cursor: pointer;
-  width: 18px;
-  height: 18px;
+  width: 24px;
+  height: 24px;
+  font-weight: 600;
   border-radius: 50%;
   background-color: rgb(241, 212, 217);
   font-size: 0.7rem;
